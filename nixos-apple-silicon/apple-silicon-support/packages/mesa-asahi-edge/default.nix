@@ -12,18 +12,7 @@
   # libclc and other OpenCL components are needed for geometry shader support on Apple Silicon
   enableOpenCL = true;
 }).overrideAttrs (oldAttrs: {
-  # version must be the same length (i.e. no unstable or date)
-  # so that system.replaceRuntimeDependencies can work
-  version = "23.3.0";
-  src = fetchFromGitLab {
-    # tracking: https://pagure.io/fedora-asahi/mesa/commits/asahi
-    domain = "gitlab.freedesktop.org";
-    owner = "asahi";
-    repo = "mesa";
-    rev = "asahi-20240228";
-    hash = "sha256-wOFJyYfoN6yxE9HaHXLP/0MhjyRvmlb+jPPUke0sbbE=";
-  };
-
+   version = "24.24.24";
   mesonFlags =
     # remove flag to configure xvmc functionality as having it
     # breaks the build because that no longer exists in Mesa 23

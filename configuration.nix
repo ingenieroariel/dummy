@@ -9,7 +9,13 @@ in
       ./hardware-configuration.nix
       ./nixos-apple-silicon/apple-silicon-support
     ];
+#  services.xserver.enable = true;
+#  services.xserver.displayManager.sddm.enable = true;
+#  services.xserver.desktopManager.plasma5.enable = true;
 
+  nix.nixPath = [
+    "nixpkgs=/etc/nixos/nixpkgs"
+  ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = false;
   hardware.opengl.enable = true;
@@ -50,6 +56,7 @@ in
 
   environment.systemPackages = with pkgs; [
      neovim
+     ripgrep
      arcan
      glmark2
    ];
@@ -67,8 +74,8 @@ in
   environment.binsh = "${pkgs.dash}/bin/dash";
 
   services.openssh.enable = true;
-  services.openssh.passwordAuthentication = false;
-  services.openssh.permitRootLogin = "yes";
+  services.openssh.settings.PasswordAuthentication = false;
+  services.openssh.settings.PermitRootLogin = "yes";
   system.copySystemConfiguration = true;
 
   system.stateVersion = "24.05";
