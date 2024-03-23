@@ -13,6 +13,11 @@ in
 #  services.xserver.displayManager.sddm.enable = true;
 #  services.xserver.desktopManager.plasma5.enable = true;
 
+   networking.wireless.iwd = {
+    enable = true;
+    settings.General.EnableNetworkConfiguration = true;
+  };
+
   nix.nixPath = [
     "nixpkgs=/etc/nixos/nixpkgs"
   ];
@@ -30,7 +35,7 @@ in
   networking.interfaces.end0.ipv4.addresses  = [{ address="96.246.216.234"; prefixLength=24;}];
   networking.firewall.enable = true;
   networking.firewall.allowedUDPPorts = [ 53 ];
-  networking.firewall.allowedTCPPorts = [ 22 50 80 443 6680 ];
+  networking.firewall.allowedTCPPorts = [ 22 ];# 50 80 443 6680 ];
   networking.nameservers = [ "1.1.1.1" "8.8.8.8"] ; 
   time.timeZone = "America/Eastern";
   fonts = {
@@ -59,6 +64,8 @@ in
      ripgrep
      arcan
      glmark2
+     htop
+
    ];
  
   i18n.defaultLocale = "en_US.UTF-8";
